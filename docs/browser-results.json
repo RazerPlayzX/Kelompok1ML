@@ -1,0 +1,50 @@
+[
+  {
+    "case": "Uvicorn health melalui HTTP",
+    "status": "PASS"
+  },
+  {
+    "case": "Form kosong diblokir validasi HTML",
+    "status": "PASS"
+  },
+  {
+    "case": "Loading dan tombol nonaktif saat request tertunda",
+    "status": "PASS"
+  },
+  {
+    "case": "Submit Fetch tanpa reload; 15 nilai JSON numerik cocok",
+    "status": "PASS"
+  },
+  {
+    "case": "Hasil dan tiga probabilitas sesuai API model asli",
+    "status": "PASS"
+  },
+  {
+    "case": "Desktop 1440x1100; grid tiga kolom tanpa overflow",
+    "status": "PASS"
+  },
+  {
+    "case": "Reset mengosongkan input, hasil, error, status",
+    "status": "PASS"
+  },
+  {
+    "case": "Guard JavaScript menolak field kosong sebelum Number",
+    "status": "PASS"
+  },
+  {
+    "case": "Detail 422 asli ditampilkan dan tombol aktif kembali",
+    "status": "PASS"
+  },
+  {
+    "case": "Kegagalan jaringan ditangani; tombol aktif kembali",
+    "status": "PASS"
+  },
+  {
+    "case": "Mobile viewport 390x844; grid satu kolom, submit berhasil",
+    "status": "PASS"
+  },
+  {
+    "case": "Tidak ada uncaught JavaScript error",
+    "status": "PASS"
+  }
+]

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Screening Awal Status Diabetes</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <p class="eyebrow">PRAKTIKUM MACHINE LEARNING · KELOMPOK 1</p>
+      <h1>Screening Awal Status Diabetes</h1>
+      <p>Isi 15 atribut berikut untuk mencoba prediksi kelas model diabetes.</p>
+      <p class="disclaimer">Sistem ini merupakan prototipe akademik untuk pembelajaran Machine Learning, bukan alat diagnosis dan bukan pengganti pemeriksaan atau keputusan tenaga kesehatan.</p>
+    </header>
+
+    <section class="card" aria-labelledby="inputTitle">
+      <h2 id="inputTitle">Data input</h2>
+      <p class="hint">Semua field wajib diisi. BMI menggunakan nilai desimal, misalnya 31.5. Pilih kelompok usia yang sesuai, bukan usia dalam tahun.</p>
+      <form id="predictionForm">
+        <div class="form-grid">
+          <label>Riwayat tekanan darah tinggi
+            <select name="HighBP" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
+          </label>
+          <label>Riwayat kolesterol tinggi
+            <select name="HighChol" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
+          </label>
+          <label>BMI (12–100)
+            <input name="BMI" type="number" min="12" max="100" step="any" placeholder="Contoh: 31.5" required>
+          </label>
+          <label>Pernah merokok minimal 100 batang sepanjang hidup
+            <select name="Smoker" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
+          </label>
+          <label>Riwayat stroke
+            <select name="Stroke" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
+          </label>
+          <label>Riwayat penyakit jantung koroner/serangan jantung
+            <select name="HeartDiseaseorAttack" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
+          </label>
+          <label>Aktivitas fisik di luar pekerjaan dalam sebulan terakhir
+            <select name="PhysActivity" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
+          </label>
+          <label>Pernah terkendala biaya untuk mengakses dokter
+            <select name="NoDocbcCost" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
+          </label>
+          <label>Kondisi kesehatan umum
+            <select name="GenHlth" required>
+              <option value="">Pilih kondisi</option>
+              <option value="1">Sangat baik sekali</option><option value="2">Sangat baik</option>
+              <option value="3">Baik</option><option value="4">Cukup</option><option value="5">Buruk</option>
+            </select>
+          </label>
+          <label>Hari kesehatan mental tidak baik dalam 30 hari terakhir
+            <input name="MentHlth" type="number" min="0" max="30" step="1" placeholder="0–30 hari" required>
+          </label>
+          <label>Hari kesehatan fisik tidak baik dalam 30 hari terakhir
+            <input name="PhysHlth" type="number" min="0" max="30" step="1" placeholder="0–30 hari" required>
+          </label>
+          <label>Kesulitan berjalan atau naik tangga
+            <select name="DiffWalk" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
+          </label>
+          <label>Jenis kelamin
+            <select name="Sex" required><option value="">Pilih jenis kelamin</option><option value="1">Laki-laki</option><option value="2">Perempuan</option></select>
+          </label>
+          <label>Kelompok usia
+            <select name="AgeGroup" required>
+              <option value="">Pilih kelompok usia</option>
+              <option value="1">18–24 tahun</option><option value="2">25–29 tahun</option>
+              <option value="3">30–34 tahun</option><option value="4">35–39 tahun</option>
+              <option value="5">40–44 tahun</option><option value="6">45–49 tahun</option>
+              <option value="7">50–54 tahun</option><option value="8">55–59 tahun</option>
+              <option value="9">60–64 tahun</option><option value="10">65–69 tahun</option>
+              <option value="11">70–74 tahun</option><option value="12">75–79 tahun</option>
+              <option value="13">80 tahun ke atas</option>
+            </select>
+          </label>
+          <label>Pendidikan
+            <select name="Education" required>
+              <option value="">Pilih pendidikan</option>
+              <option value="1">Belum lulus SMA</option><option value="2">Lulusan SMA</option>
+              <option value="3">Pernah kuliah/sekolah teknis</option><option value="4">Lulusan perguruan tinggi</option>
+            </select>
+          </label>
+        </div>
+        <p class="hint">Batas BMI 12–100 merupakan batas operasional prototipe, bukan batas medis universal.</p>
+        <div class="actions">
+          <button type="submit" id="submitBtn">Prediksi</button>
+          <button type="reset" id="resetBtn" class="secondary">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card result-card" aria-labelledby="resultTitle" aria-live="polite">
+      <h2 id="resultTitle">Hasil prediksi</h2>
+      <p id="status" class="status" role="status">Belum ada request.</p>
+      <div id="result" class="result" hidden>
+        <p class="result-label">Prediksi kelas model</p>
+        <p id="prediction" class="prediction"></p>
+        <p>Probabilitas kelas yang diprediksi: <strong id="probability"></strong></p>
+        <ul id="probabilities" aria-label="Probabilitas ketiga kelas"></ul>
+        <p class="hint">Probabilitas model bukan accuracy dan bukan kepastian diagnosis.</p>
+      </div>
+      <p id="error" class="error" role="alert" hidden></p>
+    </section>
+  </main>
+</body>
+</html>

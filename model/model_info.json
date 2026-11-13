@@ -1,0 +1,125 @@
+{
+  "model_terbaik": "Random Forest (tuned)",
+  "nomor_kelompok": 1,
+  "dataset_source_url": null,
+  "input_stage": "15 fitur hasil cleaning; bukan kode survei asli",
+  "raw_survey_recoding_in_pipeline": false,
+  "range_note": "Rentang berikut adalah min/max training, bukan otomatis batas validasi domain API.",
+  "best_params": {
+    "classifier__max_depth": 15,
+    "classifier__min_samples_leaf": 5,
+    "classifier__n_estimators": 100
+  },
+  "sklearn_version": "1.6.1",
+  "target": "DiabetesStatus",
+  "kelas": {
+    "0": "Tidak diabetes",
+    "1": "Prediabetes",
+    "2": "Diabetes"
+  },
+  "urutan_fitur": [
+    "HighBP",
+    "HighChol",
+    "BMI",
+    "Smoker",
+    "Stroke",
+    "HeartDiseaseorAttack",
+    "PhysActivity",
+    "NoDocbcCost",
+    "GenHlth",
+    "MentHlth",
+    "PhysHlth",
+    "DiffWalk",
+    "Sex",
+    "AgeGroup",
+    "Education"
+  ],
+  "fitur_numerik": {
+    "BMI": {
+      "min": 12.02,
+      "max": 99.79
+    },
+    "MentHlth": {
+      "min": 0.0,
+      "max": 30.0
+    },
+    "PhysHlth": {
+      "min": 0.0,
+      "max": 30.0
+    }
+  },
+  "fitur_kategorikal": {
+    "HighBP": [
+      0.0,
+      1.0
+    ],
+    "HighChol": [
+      0.0,
+      1.0
+    ],
+    "Smoker": [
+      0.0,
+      1.0
+    ],
+    "Stroke": [
+      0.0,
+      1.0
+    ],
+    "HeartDiseaseorAttack": [
+      0.0,
+      1.0
+    ],
+    "PhysActivity": [
+      0.0,
+      1.0
+    ],
+    "NoDocbcCost": [
+      0.0,
+      1.0
+    ],
+    "DiffWalk": [
+      0.0,
+      1.0
+    ],
+    "Sex": [
+      1,
+      2
+    ],
+    "GenHlth": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0
+    ],
+    "AgeGroup": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0,
+      11.0,
+      12.0,
+      13.0
+    ],
+    "Education": [
+      1.0,
+      2.0,
+      3.0,
+      4.0
+    ]
+  },
+  "metrik_test": {
+    "Model": "Random Forest (tuned)",
+    "Accuracy": 0.677,
+    "Precision Macro": 0.4314,
+    "Recall Macro": 0.5035,
+    "F1-Score Macro": 0.4304,
+    "ROC-AUC OvR Macro": 0.7454
+  }
+}

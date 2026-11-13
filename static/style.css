@@ -1,0 +1,46 @@
+* { box-sizing: border-box; }
+:root {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #172033;
+  background: #f3f6fb;
+}
+body { margin: 0; }
+.container { width: min(960px, 92%); margin: 36px auto; }
+.hero { margin-bottom: 22px; }
+.eyebrow { color: #3157a4; font-size: .78rem; font-weight: 800; letter-spacing: .09em; }
+h1 { margin: 8px 0; font-size: clamp(1.8rem, 4vw, 2.6rem); }
+h2 { margin-top: 0; font-size: 1.2rem; }
+p { line-height: 1.55; }
+.card {
+  background: white; border: 1px solid #e2e8f0; border-radius: 18px;
+  padding: 24px; margin: 18px 0; box-shadow: 0 8px 28px rgba(30, 50, 90, .06);
+}
+.form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+label { display: flex; flex-direction: column; gap: 7px; font-size: .9rem; font-weight: 650; }
+input, select {
+  width: 100%; min-width: 0; padding: 11px 12px; margin-top: auto;
+  border: 1px solid #cbd5e1; border-radius: 9px; background: white; font: inherit;
+}
+input:focus, select:focus, button:focus-visible { outline: 2px solid #9bb7f5; border-color: #3157a4; }
+.actions { display: flex; gap: 10px; margin-top: 22px; }
+button { border: 0; border-radius: 9px; padding: 12px 20px; background: #234b9a; color: white; font-weight: 750; cursor: pointer; }
+button:disabled { opacity: .6; cursor: wait; }
+button.secondary { background: #e9eef7; color: #24334f; }
+.status, .hint { color: #526078; }
+.hint { font-size: .86rem; }
+.result { border-left: 4px solid #3157a4; padding: 10px 16px; background: #f5f8ff; border-radius: 8px; }
+.result-label { margin-bottom: 0; color: #526078; }
+.prediction { font-size: 1.7rem; font-weight: 850; margin: 4px 0 12px; }
+.error { color: #a32222; background: #fff1f1; padding: 12px; border-radius: 8px; overflow-wrap: anywhere; }
+.disclaimer { border-left: 4px solid #3157a4; padding: 12px 16px; background: #e9eef7; border-radius: 8px; font-size: .9rem; }
+li { margin: 8px 0; }
+[hidden] { display: none !important; }
+@media (max-width: 720px) {
+  .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .container { margin-top: 22px; }
+}
+@media (max-width: 480px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .card { padding: 18px; }
+  .actions { flex-direction: column; }
+}
