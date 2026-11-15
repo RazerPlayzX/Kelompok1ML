@@ -45,8 +45,8 @@ def test_home(client):
     response = client.get("/")
     assert response.status_code == 200
     assert "text/html" in response.headers["content-type"]
-    assert "Screening Awal Status Diabetes" in response.text
-    assert api.DISCLAIMER in response.text
+    assert "SehatCheck" in response.text
+    assert "Bukan alat diagnosis medis" in response.text
 
 
 @pytest.mark.parametrize("asset,content_type", [

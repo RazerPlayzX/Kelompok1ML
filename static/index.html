@@ -3,107 +3,48 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Screening Awal Status Diabetes</title>
+  <meta name="theme-color" content="#f4f7f4">
+  <title>SehatCheck | Skrining Diabetes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
   <script src="/static/app.js" defer></script>
 </head>
 <body>
-  <main class="container">
-    <header class="hero">
-      <p class="eyebrow">PRAKTIKUM MACHINE LEARNING · KELOMPOK 1</p>
-      <h1>Screening Awal Status Diabetes</h1>
-      <p>Isi 15 atribut berikut untuk mencoba prediksi kelas model diabetes.</p>
-      <p class="disclaimer">Sistem ini merupakan prototipe akademik untuk pembelajaran Machine Learning, bukan alat diagnosis dan bukan pengganti pemeriksaan atau keputusan tenaga kesehatan.</p>
-    </header>
+  <div id="appShell" class="app-shell">
+    <aside class="sidebar"><a class="brand sidebar-brand" href="#dashboard" aria-label="SehatCheck"><span class="brand-mark"><svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5 26 7v8.6c0 6.3-4.2 10.9-10 13-5.8-2.1-10-6.7-10-13V7l10-3.5Z" stroke="currentColor" stroke-width="1.8"/><path d="M16 10v12M10 16h12" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></span><span>Sehat<span class="brand-light">Check</span><small>PROTOTIPE AKADEMIK</small></span></a><div class="sidebar-label">MENU UTAMA</div><nav class="side-nav" aria-label="Navigasi utama"><button class="nav-link active" data-page="dashboard"><span class="nav-icon">⌂</span>Dashboard</button><button class="nav-link" data-page="screening"><span class="nav-icon">＋</span>Skrining baru</button><button class="nav-link" data-page="history"><span class="nav-icon">◷</span>Riwayat sesi</button></nav><div class="sidebar-bottom"><div class="sidebar-disclaimer"><span>ⓘ</span><p>Hasil model adalah estimasi untuk edukasi, bukan diagnosis medis.</p></div></div></aside>
 
-    <section class="card" aria-labelledby="inputTitle">
-      <h2 id="inputTitle">Data input</h2>
-      <p class="hint">Semua field wajib diisi. BMI menggunakan nilai desimal, misalnya 31.5. Pilih kelompok usia yang sesuai, bukan usia dalam tahun.</p>
-      <form id="predictionForm">
-        <div class="form-grid">
-          <label>Riwayat tekanan darah tinggi
-            <select name="HighBP" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
-          </label>
-          <label>Riwayat kolesterol tinggi
-            <select name="HighChol" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
-          </label>
-          <label>BMI (12–100)
-            <input name="BMI" type="number" min="12" max="100" step="any" placeholder="Contoh: 31.5" required>
-          </label>
-          <label>Pernah merokok minimal 100 batang sepanjang hidup
-            <select name="Smoker" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
-          </label>
-          <label>Riwayat stroke
-            <select name="Stroke" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
-          </label>
-          <label>Riwayat penyakit jantung koroner/serangan jantung
-            <select name="HeartDiseaseorAttack" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
-          </label>
-          <label>Aktivitas fisik di luar pekerjaan dalam sebulan terakhir
-            <select name="PhysActivity" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
-          </label>
-          <label>Pernah terkendala biaya untuk mengakses dokter
-            <select name="NoDocbcCost" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
-          </label>
-          <label>Kondisi kesehatan umum
-            <select name="GenHlth" required>
-              <option value="">Pilih kondisi</option>
-              <option value="1">Sangat baik sekali</option><option value="2">Sangat baik</option>
-              <option value="3">Baik</option><option value="4">Cukup</option><option value="5">Buruk</option>
-            </select>
-          </label>
-          <label>Hari kesehatan mental tidak baik dalam 30 hari terakhir
-            <input name="MentHlth" type="number" min="0" max="30" step="1" placeholder="0–30 hari" required>
-          </label>
-          <label>Hari kesehatan fisik tidak baik dalam 30 hari terakhir
-            <input name="PhysHlth" type="number" min="0" max="30" step="1" placeholder="0–30 hari" required>
-          </label>
-          <label>Kesulitan berjalan atau naik tangga
-            <select name="DiffWalk" required><option value="">Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select>
-          </label>
-          <label>Jenis kelamin
-            <select name="Sex" required><option value="">Pilih jenis kelamin</option><option value="1">Laki-laki</option><option value="2">Perempuan</option></select>
-          </label>
-          <label>Kelompok usia
-            <select name="AgeGroup" required>
-              <option value="">Pilih kelompok usia</option>
-              <option value="1">18–24 tahun</option><option value="2">25–29 tahun</option>
-              <option value="3">30–34 tahun</option><option value="4">35–39 tahun</option>
-              <option value="5">40–44 tahun</option><option value="6">45–49 tahun</option>
-              <option value="7">50–54 tahun</option><option value="8">55–59 tahun</option>
-              <option value="9">60–64 tahun</option><option value="10">65–69 tahun</option>
-              <option value="11">70–74 tahun</option><option value="12">75–79 tahun</option>
-              <option value="13">80 tahun ke atas</option>
-            </select>
-          </label>
-          <label>Pendidikan
-            <select name="Education" required>
-              <option value="">Pilih pendidikan</option>
-              <option value="1">Belum lulus SMA</option><option value="2">Lulusan SMA</option>
-              <option value="3">Pernah kuliah/sekolah teknis</option><option value="4">Lulusan perguruan tinggi</option>
-            </select>
-          </label>
-        </div>
-        <p class="hint">Batas BMI 12–100 merupakan batas operasional prototipe, bukan batas medis universal.</p>
-        <div class="actions">
-          <button type="submit" id="submitBtn">Prediksi</button>
-          <button type="reset" id="resetBtn" class="secondary">Reset</button>
-        </div>
-      </form>
-    </section>
+    <main class="main-area"><header class="topbar"><div><span class="topbar-label">PORTAL SKRINING</span><span id="pageTitle" class="topbar-title">Skrining baru</span></div><div class="topbar-right"><span id="apiStatus" class="api-status status-checking"><i></i><span id="apiStatusText">Memeriksa backend</span></span></div></header>
+      <div class="content-area">
+        <section id="page-dashboard" class="page" aria-labelledby="dashboardHeading" hidden><div class="page-heading"><div><span class="eyebrow">RINGKASAN AKTIVITAS</span><h1 id="dashboardHeading">Ringkasan aktivitas skrining</h1><p>Kelola skrining dan lihat ringkasan aktivitas Anda di sini.</p></div><span id="currentDate" class="date-pill"></span></div>
+          <article class="welcome-card"><div class="welcome-copy"><span class="welcome-kicker"><i></i> MODEL SIAP DIGUNAKAN</span><h2>Mulai skrining kesehatan<br>dalam beberapa langkah.</h2><p>Lengkapi 15 indikator kesehatan untuk melihat estimasi klasifikasi dari model Random Forest kelompok.</p><button class="welcome-action" data-goto="screening" type="button">Mulai skrining <span>→</span></button></div><div class="welcome-visual" aria-hidden="true"><div class="welcome-ring ring-1"></div><div class="welcome-ring ring-2"></div><div class="welcome-heart">✚</div><span class="floating-stat stat-one"><b>15</b> indikator</span><span class="floating-stat stat-two"><b>3</b> kategori hasil</span></div></article>
+          <div class="stat-grid"><article class="stat-card"><span class="stat-icon icon-green">◷</span><div><small>SKRINING DI SESI INI</small><strong id="historyCount">0</strong><span class="stat-caption">Riwayat tidak disimpan permanen</span></div></article><article class="stat-card"><span class="stat-icon icon-mint">✦</span><div><small>MODEL AKTIF</small><strong class="stat-model" id="modelName">Random Forest</strong><span class="stat-caption">Pipeline kelompok · tuned</span></div></article><article class="stat-card"><span class="stat-icon icon-blue">▦</span><div><small>KATEGORI KLASIFIKASI</small><strong>3 kelas</strong><span class="stat-caption">Tidak diabetes · Prediabetes · Diabetes</span></div></article></div>
+          <div class="dashboard-grid"><article class="panel recent-panel"><div class="panel-heading"><div><span class="panel-kicker">AKTIVITAS TERBARU</span><h3>Riwayat skrining</h3></div><button class="text-action" data-goto="history" type="button">Lihat semua <span>→</span></button></div><div id="dashboardRecent" class="empty-state"><span class="empty-icon">◷</span><b>Belum ada skrining</b><p>Hasil skrining pada sesi ini akan muncul di sini.</p></div><div class="table-wrap"><table id="recentTable" hidden><thead><tr><th>WAKTU</th><th>HASIL</th><th>PROBABILITAS</th></tr></thead><tbody id="recentRows"></tbody></table></div></article><article class="panel metrics-panel"><div class="panel-heading"><div><span class="panel-kicker">HASIL EVALUASI MODEL</span><h3>Performa pada data uji</h3></div><span class="metric-model-tag">Random Forest</span></div><div class="metric-chart" role="img" aria-label="Grafik metrik model pada data uji: Accuracy 67,7 persen, Precision Macro 43,14 persen, Recall Macro 50,35 persen, F1 Score Macro 43,04 persen, ROC AUC Macro 74,54 persen."><div class="metric-row"><span>Accuracy</span><div class="metric-track"><span style="width:67.7%"></span></div><b>67,7%</b></div><div class="metric-row"><span>Precision macro</span><div class="metric-track"><span style="width:43.14%"></span></div><b>43,1%</b></div><div class="metric-row"><span>Recall macro</span><div class="metric-track"><span style="width:50.35%"></span></div><b>50,4%</b></div><div class="metric-row"><span>F1-score macro</span><div class="metric-track"><span style="width:43.04%"></span></div><b>43,0%</b></div><div class="metric-row"><span>ROC-AUC macro</span><div class="metric-track"><span style="width:74.54%"></span></div><b>74,5%</b></div></div><div class="metric-axis"><span>0%</span><span>50%</span><span>100%</span></div><p class="chart-footnote">Metrik evaluasi pada data uji; berbeda dari probabilitas untuk satu skrining.</p></article></div>
+        </section>
 
-    <section class="card result-card" aria-labelledby="resultTitle" aria-live="polite">
-      <h2 id="resultTitle">Hasil prediksi</h2>
-      <p id="status" class="status" role="status">Belum ada request.</p>
-      <div id="result" class="result" hidden>
-        <p class="result-label">Prediksi kelas model</p>
-        <p id="prediction" class="prediction"></p>
-        <p>Probabilitas kelas yang diprediksi: <strong id="probability"></strong></p>
-        <ul id="probabilities" aria-label="Probabilitas ketiga kelas"></ul>
-        <p class="hint">Probabilitas model bukan accuracy dan bukan kepastian diagnosis.</p>
-      </div>
-      <p id="error" class="error" role="alert" hidden></p>
-    </section>
-  </main>
+        <section id="page-screening" class="page active" aria-labelledby="screeningHeading"><div class="page-heading"><div><span class="eyebrow">FORMULIR SKRINING</span><h1 id="screeningHeading">Skrining baru</h1><p>Isi informasi sesuai kondisi yang paling menggambarkan Anda.</p></div><span class="required-note">* Wajib diisi</span></div><div class="screening-layout"><div class="form-card"><div class="completion"><div class="completion-copy"><span>Progres pengisian</span><b id="completionCount">0 dari 15 terisi</b></div><div class="progress-track" role="progressbar" aria-label="Kelengkapan formulir" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0"><span id="formProgress"></span></div></div><form id="form" novalidate><div class="section-title"><span class="section-number">01</span><div><b>Kondisi kesehatan</b><small>Pilih jawaban yang paling sesuai</small></div></div><div class="form-grid">
+          <label class="field"><span>Tekanan darah tinggi <em>*</em></span><select name="HighBP" required><option value="" selected disabled>Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select></label>
+          <label class="field"><span>Kolesterol tinggi <em>*</em></span><select name="HighChol" required><option value="" selected disabled>Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select></label>
+          <label class="field"><span>Indeks massa tubuh (BMI) <em>*</em></span><input name="BMI" type="number" inputmode="decimal" min="12" max="100" step="any" placeholder="Contoh: 24.5" required><small class="hint">Rentang operasional prototipe: 12–100</small></label>
+          <label class="field"><span>Pernah merokok ≥100 batang <em>*</em></span><select name="Smoker" required><option value="" selected disabled>Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select><small class="hint">Sepanjang hidup</small></label>
+          <label class="field"><span>Pernah mengalami stroke <em>*</em></span><select name="Stroke" required><option value="" selected disabled>Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select></label>
+          <label class="field"><span>Penyakit jantung / serangan jantung <em>*</em></span><select name="HeartDiseaseorAttack" required><option value="" selected disabled>Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select></label>
+          <label class="field"><span>Aktivitas fisik di luar pekerjaan <em>*</em></span><select name="PhysActivity" required><option value="" selected disabled>Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select><small class="hint">Dalam sebulan terakhir</small></label>
+          <label class="field"><span>Terkendala biaya untuk ke dokter <em>*</em></span><select name="NoDocbcCost" required><option value="" selected disabled>Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select></label>
+        </div><div class="section-title second-section"><span class="section-number">02</span><div><b>Kesehatan &amp; demografi</b><small>Lengkapi seluruh pilihan berikut</small></div></div><div class="form-grid">
+          <label class="field"><span>Kesehatan umum <em>*</em></span><select name="GenHlth" required><option value="" selected disabled>Pilih kondisi</option><option value="1">Sangat baik sekali</option><option value="2">Sangat baik</option><option value="3">Baik</option><option value="4">Cukup</option><option value="5">Buruk</option></select></label>
+          <label class="field"><span>Hari kesehatan mental kurang baik <em>*</em></span><input name="MentHlth" type="number" min="0" max="30" step="1" placeholder="0–30 hari" required><small class="hint">Dalam 30 hari terakhir</small></label>
+          <label class="field"><span>Hari kesehatan fisik kurang baik <em>*</em></span><input name="PhysHlth" type="number" min="0" max="30" step="1" placeholder="0–30 hari" required><small class="hint">Dalam 30 hari terakhir</small></label>
+          <label class="field"><span>Kesulitan berjalan / naik tangga <em>*</em></span><select name="DiffWalk" required><option value="" selected disabled>Pilih jawaban</option><option value="0">Tidak</option><option value="1">Ya</option></select></label>
+          <label class="field"><span>Jenis kelamin <em>*</em></span><select name="Sex" required><option value="" selected disabled>Pilih jawaban</option><option value="1">Laki-laki</option><option value="2">Perempuan</option></select></label>
+          <label class="field"><span>Kelompok usia <em>*</em></span><select name="AgeGroup" required><option value="" selected disabled>Pilih kelompok usia</option><option value="1">18–24 tahun</option><option value="2">25–29 tahun</option><option value="3">30–34 tahun</option><option value="4">35–39 tahun</option><option value="5">40–44 tahun</option><option value="6">45–49 tahun</option><option value="7">50–54 tahun</option><option value="8">55–59 tahun</option><option value="9">60–64 tahun</option><option value="10">65–69 tahun</option><option value="11">70–74 tahun</option><option value="12">75–79 tahun</option><option value="13">80 tahun ke atas</option></select></label>
+          <label class="field"><span>Pendidikan terakhir <em>*</em></span><select name="Education" required><option value="" selected disabled>Pilih pendidikan</option><option value="1">Belum lulus SMA</option><option value="2">Lulusan SMA</option><option value="3">Pernah kuliah / sekolah teknis</option><option value="4">Lulusan perguruan tinggi</option></select></label>
+        </div><div class="form-actions"><button id="submit" class="primary-button" type="submit"><span>Lihat hasil skrining</span><span aria-hidden="true">→</span></button><button id="reset" class="reset-button" type="reset">Atur ulang</button></div></form><p id="status" class="status" role="status" aria-live="polite"></p><p id="error" class="error" role="alert"></p><section id="result" class="result" aria-live="polite" hidden><div class="result-title"><span class="result-icon">✓</span><div><small>HASIL SKRINING</small><h2 id="resultLabel"></h2></div><span class="result-confidence" id="confidenceBadge"></span></div><p class="result-caption"><b>Grafik probabilitas model</b><span>Estimasi untuk setiap kategori pada input ini:</span></p><div class="probability-scale" aria-hidden="true"><span></span><span class="scale-labels"><i>0%</i><i>50%</i><i>100%</i></span><span></span></div><div id="probs" class="prob-list"></div><p id="disclaimer" class="disclaimer"></p></section></div><aside class="screening-aside"><article class="aside-card model-card"><span class="aside-icon">✦</span><span class="panel-kicker">MODEL YANG DIGUNAKAN</span><h3>Random Forest</h3><p>Pipeline tuned kelompok 1 dengan tiga kategori hasil prediksi.</p><div class="aside-divider"></div><div class="model-detail"><span>Input</span><b>15 fitur</b></div><div class="model-detail"><span>Output</span><b>3 kelas</b></div></article><article class="aside-card caution-card"><span>ⓘ</span><div><b>Catatan penting</b><p>Probabilitas bukan accuracy dan bukan kepastian diagnosis. Diskusikan kondisi kesehatan dengan tenaga kesehatan.</p></div></article></aside></div></section>
+
+        <section id="page-history" class="page" aria-labelledby="historyHeading" hidden><div class="page-heading"><div><span class="eyebrow">AKTIVITAS LOKAL</span><h1 id="historyHeading">Riwayat sesi</h1><p>Hasil yang tercatat hanya selama halaman ini terbuka.</p></div><button class="outline-button" data-goto="screening" type="button">+ Skrining baru</button></div><article class="panel history-panel"><div id="historyEmpty" class="empty-state"><span class="empty-icon">◷</span><b>Belum ada riwayat</b><p>Prediksi yang Anda lakukan pada sesi ini akan tampil di sini.</p></div><div class="table-wrap"><table id="historyTable" hidden><thead><tr><th>WAKTU</th><th>HASIL PREDIKSI</th><th>PROBABILITAS TERPILIH</th><th>RINGKASAN</th></tr></thead><tbody id="historyRows"></tbody></table></div></article><p class="history-note">Riwayat dihapus otomatis saat Anda keluar atau menutup halaman. Data input tidak disimpan di server.</p></section>
+      </div><footer class="app-footer">© Proyek Praktikum Machine Learning Kelompok 1 <span>•</span> Untuk tujuan edukasi <span class="footer-disclaimer">Bukan alat diagnosis medis</span></footer>
+    </main>
+  </div>
 </body>
 </html>

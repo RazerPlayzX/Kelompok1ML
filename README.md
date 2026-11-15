@@ -2,7 +2,7 @@
 
 Prototipe akademik Praktikum Machine Learning kelompok 1 untuk tema Kesehatan & Medis. Aplikasi menggunakan pipeline **Random Forest (tuned)** milik kelompok untuk klasifikasi `DiabetesStatus`.
 
-Backend ini merupakan penyelesaian **langkah 5 — Pembuatan REST API Backend**. Form HTML dan Fetch merupakan **integrasi dasar langkah 6** yang disertakan mengikuti pola contoh praktikum. Proyek ini tidak menyatakan keseluruhan tugas besar, laporan kelompok, atau seluruh pengujian end-to-end telah selesai.
+Proyek ini menyediakan web skrining responsif dengan formulir, hasil prediksi, estimasi probabilitas, dan REST API FastAPI. Halaman skrining dapat langsung dibuka tanpa login. Proyek ini merupakan prototipe akademik, bukan alat diagnosis.
 
 ## Struktur proyek
 
@@ -40,27 +40,27 @@ Request valid diubah dengan `payload.model_dump()` menjadi DataFrame satu baris,
 
 ## Menjalankan pada Windows / PowerShell
 
-Buka folder `C:\Projects\proyek-ml-kelompok` di VS Code dan jalankan perintah dari root proyek tersebut:
+Buka folder proyek ini di VS Code dan jalankan perintah dari root proyek:
 
 ```powershell
-cd C:\Projects\proyek-ml-kelompok
-py --list
-py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m uvicorn app:app --reload
 ```
 
-Jika `.venv` sudah dibuat dan dependensinya sudah dipasang, cukup jalankan perintah Uvicorn. Environment dari lokasi lama harus dibuat ulang; jangan memindahkan `.venv` antar-folder. Instalasi Python global tidak diubah.
+Jalankan server dengan:
+
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn app:app --host 127.0.0.1 --port 8000
+```
 
 Jika environment sudah diaktifkan, alternatif perintahnya:
 
 ```powershell
-uvicorn app:app --reload
+uvicorn app:app --host 127.0.0.1 --port 8000
 ```
 
 Tidak perlu mengaktifkan environment atau mengubah ExecutionPolicy untuk menggunakan perintah lengkap `.\.venv\Scripts\python.exe`. Buka halaman dari FastAPI, bukan Live Server atau `file://`. Form dan API menggunakan origin yang sama sehingga CORS wildcard tidak diperlukan.
 
-- Form: http://127.0.0.1:8000/
+- Web skrining: http://127.0.0.1:8000/
 - Swagger UI: http://127.0.0.1:8000/docs
 - Health: http://127.0.0.1:8000/health
 
