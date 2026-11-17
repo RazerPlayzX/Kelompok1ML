@@ -70,8 +70,15 @@ function showApplication() {
   setPage(pageNames[location.hash.slice(1)] ? location.hash.slice(1) : "dashboard");
 }
 
+let displayedPage = null;
+let pageTransition = null;
+const reducedPageMotion = matchMedia("(prefers-reduced-motion: reduce)");
+reducedPageMotion.addEventListener("change", () => pageTransition?.cancel());
+
 function setPage(page) {
   if (!pageNames[page]) page = "dashboard";
+  const changed = displayedPage !== null && displayedPage !== page;
+  pageTransition?.cancel();
   if (location.hash !== `#${page}`) history.pushState(null, "", `#${page}`);
   document.querySelectorAll(".page").forEach((section) => {
     const active = section.id === `page-${page}`;
@@ -89,6 +96,16 @@ function setPage(page) {
   heading.setAttribute("tabindex", "-1");
   heading.focus({ preventScroll: true });
   window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+  if (changed && !reducedPageMotion.matches) {
+    pageTransition = document.querySelector(`#page-${page}`).animate(
+      [
+        { opacity: 0.35, transform: "translateY(10px)" },
+        { opacity: 1, transform: "translateY(0)" },
+      ],
+      { duration: 240, easing: "cubic-bezier(0.23, 1, 0.32, 1)" },
+    );
+  }
+  displayedPage = page;
 }
 
 function updateProgress() {

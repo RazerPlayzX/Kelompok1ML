@@ -75,6 +75,10 @@ button:active:not(:disabled) {
   outline: 3px solid var(--action);
   outline-offset: 4px;
 }
+/* Judul menerima fokus programatis untuk orientasi screen reader. */
+.page h1[tabindex="-1"]:focus {
+  outline: none;
+}
 ::selection {
   background: #cbdcf7;
   color: var(--ink);
@@ -110,6 +114,8 @@ small {
 .sidebar {
   position: sticky;
   top: 0;
+  align-self: start;
+  z-index: 30;
   height: 100dvh;
   padding: 36px 20px 24px;
   display: flex;
@@ -194,6 +200,9 @@ small {
   min-width: 0;
 }
 .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -201,6 +210,24 @@ small {
   padding: 22px 44px;
   border-bottom: 1px solid var(--line);
   background: var(--paper);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+@supports ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px))) {
+  .topbar {
+    background: rgb(255 255 255 / 86%);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+  .sidebar {
+    background: rgb(20 45 78 / 94%);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
 }
 .topbar-title {
   font-weight: 600;
@@ -745,6 +772,11 @@ th {
     border-top: 1px solid var(--line);
     z-index: 30;
     display: block;
+  }
+  @supports ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px))) {
+    .sidebar {
+      background: rgb(255 255 255 / 88%);
+    }
   }
   .sidebar-brand,
   .sidebar-label,
