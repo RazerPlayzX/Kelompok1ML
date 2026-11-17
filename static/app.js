@@ -138,21 +138,19 @@ function updateDashboard() {
   const recentTable = document.querySelector('#recentTable');
   const historyEmpty = document.querySelector('#historyEmpty');
   const historyTable = document.querySelector('#historyTable');
-  const latest = sessionHistory.at(-1);
   if (!sessionHistory.length) {
-    recentEmpty.hidden = false;
+    recentEmpty.hidden = true;
     recentTable.hidden = true;
     historyEmpty.hidden = false;
     historyTable.hidden = true;
   } else {
-    recentEmpty.hidden = true;
+    recentEmpty.hidden = false;
     recentTable.hidden = false;
     historyEmpty.hidden = true;
     historyTable.hidden = false;
     renderHistoryRows(document.querySelector('#recentRows'));
     renderHistoryRows(document.querySelector('#historyRows'));
   }
-  if (latest) document.querySelector('#modelName').textContent = latest.prediction;
 }
 
 document.querySelectorAll('.nav-link').forEach((button) => {

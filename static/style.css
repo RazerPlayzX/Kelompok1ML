@@ -28,3 +28,30 @@
 .scale-labels i{font-style:normal}
 .prob-track{background-image:linear-gradient(to right,transparent calc(50% - .5px),#d4dfd6 calc(50% - .5px),#d4dfd6 calc(50% + .5px),transparent calc(50% + .5px))}
 @media(max-width:600px){.metric-row{grid-template-columns:89px minmax(0,1fr) 37px;gap:6px;font-size:8px}.metric-axis{margin-right:43px;margin-left:95px}.probability-scale{grid-template-columns:95px minmax(0,1fr) 38px;gap:6px;font-size:7px}}
+
+/* Refined dashboard inspired by the SehatCheck visual concept */
+.metric-summary{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:15px 0}
+.metric-summary .stat-card{min-height:94px;padding:16px 18px;border-radius:14px;box-shadow:0 5px 18px #1b392308}
+.metric-summary .stat-card small{letter-spacing:.8px}
+.metric-summary .stat-card strong{margin:5px 0 2px;font-size:24px;letter-spacing:-.8px}
+.metric-summary .stat-caption{font-size:9px}
+.dashboard-grid{grid-template-columns:minmax(0,1.55fr) minmax(260px,.9fr);gap:14px}
+.dashboard-grid>.panel{min-height:280px;padding:21px 22px;border-radius:15px;box-shadow:0 5px 20px #1b392308}
+.metrics-panel .panel-heading{margin-bottom:4px}
+.metrics-panel .panel-heading h3{font-size:16px}
+.chart-subtitle{display:block;margin-top:4px;color:#8c9a91;font-size:9px}
+.metric-chart{gap:16px;margin-top:21px}
+.metric-row{grid-template-columns:106px minmax(0,1fr) 43px;gap:11px;font-size:10px}
+.metric-row b{font-size:10px}
+.metric-track{height:10px}
+.metric-axis{margin:10px 52px 0 117px}
+.chart-footnote{margin-top:16px;font-size:9px}
+.model-emblem{width:35px;height:35px;display:grid;place-items:center;border-radius:11px;background:#e7f4e9;color:#238153;font-size:18px}
+.model-description{max-width:310px;margin:12px 0 18px;color:#788a7e;font-size:11px;line-height:1.65}
+.model-facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 0;border-top:1px solid #edf1ed;border-bottom:1px solid #edf1ed}
+.model-facts>div{display:grid;gap:5px}.model-facts small,.model-session>span{color:#91a097;font-size:8px;font-weight:700;letter-spacing:.7px}.model-facts b{color:#294737;font:700 14px Manrope,sans-serif}
+.model-session{display:flex;align-items:center;gap:11px;margin-top:13px}.model-session>span{margin-right:auto}.model-session>b{color:#294737;font:700 14px Manrope,sans-serif}.model-session .text-action{font-size:9px;white-space:nowrap}
+.recent-summary:not([hidden]){margin-top:11px;padding-top:9px;border-top:1px solid #edf1ed}.recent-summary> b{color:#63786b;font-size:9px}
+.recent-summary table{margin-top:4px}
+@media(max-width:850px){.metric-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.metric-summary{gap:8px;margin:10px 0}.metric-summary .stat-card{min-height:80px;padding:12px}.metric-summary .stat-card strong{font-size:21px}.dashboard-grid{grid-template-columns:1fr}.dashboard-grid>.panel{min-height:0;padding:16px}.metric-chart{gap:14px}.metric-row{grid-template-columns:93px minmax(0,1fr) 38px;gap:7px}.metric-axis{margin-right:45px;margin-left:100px}.model-session{gap:7px}.model-session .text-action{font-size:8px}}
