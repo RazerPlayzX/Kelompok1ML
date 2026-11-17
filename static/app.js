@@ -119,8 +119,8 @@ function updateProgress() {
     .querySelector(".progress-track")
     .setAttribute("aria-valuenow", String(count));
   document.querySelector("#completionBottom").textContent = `${count} dari 15 jawaban valid`;
-  document.querySelector("#formProgress").style.width =
-    `${(count / fieldNames.length) * 100}%`;
+  document.querySelector("#formProgress").style.transform =
+    `scaleX(${count / fieldNames.length})`;
 }
 
 function makePayload() {
